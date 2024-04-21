@@ -9,10 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
+@Builder
 public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,6 @@ public class UserEntity {
 	@Pattern(regexp="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
 	@Schema(example="test@email.com")
 	private String email;
-	@Pattern(regexp="[A-Z0-9]{6}")
+	@JsonIgnore
 	private String otp;
 }

@@ -1,5 +1,7 @@
 package com.todo.auth.controllers;
 
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.todo.auth.dto.LoginDTO;
-import com.todo.auth.dto.UserOTPEntity;
+import com.todo.auth.dto.UserOTPDTO;
 import com.todo.auth.models.JWTInfo;
 import com.todo.auth.models.UserEntity;
 import com.todo.auth.services.OTPService;
@@ -29,7 +31,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/verifyOTP")
-	public JWTInfo verifyOTP(@RequestBody UserOTPEntity user) {
-		return otpService.verifyOTP(user);
+	public JWTInfo verifyOTP(@RequestBody UserOTPDTO user) {
+		return otpService.verifyOTPandCreateToken(user);
 	}
 }

@@ -1,5 +1,7 @@
 package com.todo.auth.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class UserService implements UserServiceInterface{
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	public Optional<UserEntity> findUser(String email) {
+		return userRepository.findByEmail(email);
+	}
 	
 	public boolean sendOTP(UserEntity user) {
 		return true;
